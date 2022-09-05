@@ -17,14 +17,14 @@
     
 Debugging Common Errors | Part 2 | Cheat Sheet
 - Concepts in Focus
-    -Request Methods
-    -Missing colon(:)
-    -Accessing Path Parameters
-    -Query Formatting
-    -Replacing SQLite Methods
-    -HTTP Request URL
-      -Missing '?'
-      -Missing ‘&’ between Query Parameters
-      -Replacing '&' with ',' in Query Parameters
-    -Accessing Unknown Database
-    -Accessing Wrong Port Number
+    - Request Methods
+    - Missing colon(:)
+    - Accessing Path Parameters
+    - Query Formatting
+    - Replacing SQLite Methods
+    - HTTP Request URL
+      - Missing '?'
+      - Missing ‘&’ between Query Parameters
+      - Replacing '&' with ',' in Query Parameters
+    - Accessing Unknown Database
+    - Accessing Wrong Port Number
