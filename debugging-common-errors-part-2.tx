@@ -1,0 +1,200 @@
+Concepts in Focus
+  Request Methods
+  Missing colon(:)
+  Accessing Path Parameters
+  Query Formatting
+  Replacing SQLite Methods
+  HTTP Request URL
+    Missing '?'
+    Missing ‘&’ between Query Parameters
+    Replacing '&' with ',' in Query Parameters
+  Accessing Unknown Database
+  Accessing Wrong Port Number
+  
+  
+1. Request Methods
+  When we try to request with a wrong method
+  Error:
+    HTTP/1.1 404 Not Found
+    X-Powered-By: Express
+    Content-Security-Policy: default-src 'none'
+    X-Content-Type-Options: nosniff
+    Content-Type: text/html; charset=utf-8
+    Content-Length: 148
+    Date: Sun, 04 Apr 2021 11:50:56 GMT
+    Connection: close
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Error</title>
+    </head>
+    <body>
+    <pre>Cannot POST /books/</pre>
+    </body>
+    </html>
+    
+2. Missing colon(:)
+    When we miss semicolon while setting Path Parameters
+    
+    Error:
+        HTTP/1.1 404 Not Found
+        X-Powered-By: Express
+        Content-Security-Policy: default-src 'none'
+        X-Content-Type-Options: nosniff
+        Content-Type: text/html; charset=utf-8
+        Content-Length: 148
+        Date: Sun, 04 Apr 2021 11:50:56 GMT
+        Connection: close
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <title>Error</title>
+        </head>
+        <body>
+        <pre>Cannot GET /books/</pre>
+        </body>
+        </html>
+        
+3. Accessing Path Parameters
+    When we are trying to access path parameters with the wrong name
+    
+    Error:
+        root@123:/.../...part-3/myapp# nodemon index.js
+        [nodemon] 2.0.7
+        [nodemon] to restart at any time, enter `rs`
+        [nodemon] watching path(s): *.*
+        [nodemon] watching extensions: js,mjs,json
+        [nodemon] starting `node index.js`
+        Server Running at http://localhost:3000/
+        (node:905) UnhandledPromiseRejectionWarning: ReferenceError: bookId is not defined
+            at /home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/index.js:46:19
+            at Layer.handle [as handle_request] (/home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/node_modules/.pnpm/express@4.17.1/node_modules/express/lib/router/layer.js:95:5)
+            at next (/home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/node_modules/.pnpm/express@4.17.1/node_modules/express/lib/router/route.js:137:13)
+            at Route.dispatch (/home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/node_modules/.pnpm/express@4.17.1/node_modules/express/lib/router/route.js:112:3)
+            at Layer.handle [as handle_request] (/home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/node_modules/.pnpm/express@4.17.1/node_modules/express/lib/router/layer.js:95:5)
+            at /home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/node_modules/.pnpm/express@4.17.1/node_modules/express/lib/router/index.js:281:22
+            at param (/home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/node_modules/.pnpm/express@4.17.1/node_modules/express/lib/router/index.js:354:14)
+            at param (/home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/node_modules/.pnpm/express@4.17.1/node_modules/express/lib/router/index.js:365:14)
+            at Function.process_params (/home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/node_modules/.pnpm/express@4.17.1/node_modules/express/lib/router/index.js:410:3)
+            at next (/home/workspace/nodejs/sessions/Introduction-to-Express-JS-Part-2/myapp/node_modules/.pnpm/express@4.17.1/node_modules/express/lib/router/index.js:275:10)
+        (node:905) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+        (node:905) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+
+
+4. Query Formatting
+    When we miss embedding expression into string literal properly in the query
+    
+    Error:  
+        root@123:/.../...part-3/myapp# nodemon index.js
+        [nodemon] 2.0.7
+        [nodemon] to restart at any time, enter `rs`
+        [nodemon] watching path(s): *.*
+        [nodemon] watching extensions: js,mjs,json
+        [nodemon] starting `node index.js`
+        Server Running at http://localhost:3000/
+        (node:1023) UnhandledPromiseRejectionWarning: Error: SQLITE_ERROR: no such table: book
+        (node:1023) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+        (node:1023) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+        
+        
+ 5. Replacing SQLite Methods
+      When we use one SQLite method instead of another SQLite method we may get an unexpected response
+      
+      
+      Error:
+          Content-Length: 34
+          ETag: W/"22-fiAy4921oZAEOAA97wnoLQyL2Dw"
+          Date: Sun, 04 Apr 2021 12:46:07 GMT
+          Connection: close
+
+          {
+              "stmt":{},
+              "lastID":0,
+              "changes":0
+          }
+          
+          
+6. HTTP Request URL
+    6.1 Missing ?
+        When we miss ? before starting query parameters    
+        
+        Error:
+            HTTP/1.1 404 Not Found
+            X-Powered-By: Express
+            Content-Security-Policy: default-src 'none'
+            X-Content-Type-Options: nosniff
+            Content-Type: text/html; charset=utf-8
+            Content-Length: 148
+            Date: Sun, 04 Apr 2021 11:50:56 GMT
+            Connection: close
+
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+            <meta charset="utf-8">
+            <title>Error</title>
+            </head>
+            <body>
+            <pre>Cannot GET http://localhost:3000/books/offset=2&limit=3&search_q=potter&order_by=price&order=DESC</pre>
+            </body>
+            </html>
+            
+    6.2 Missing & between Query Parameters
+          When we miss & between query parameters
+          
+          
+          Error:
+              root@123:/.../...part-3/myapp# nodemon index.js
+              [nodemon] 2.0.7
+              [nodemon] to restart at any time, enter `rs`
+              [nodemon] watching path(s): *.*
+              [nodemon] watching extensions: js,mjs,json
+              [nodemon] starting `node index.js`
+              Server Running at http://localhost:3000/
+              string
+              (node:1408) UnhandledPromiseRejectionWarning: Error: SQLITE_ERROR: unrecognized token: "3offset"
+              (node:1408) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+              (node:1408) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+
+    6.3 Replacing & with , in Query Parameters
+          When we replace & with , in Query Parameters
+          
+          Error:
+              root@123:/.../...part-3/myapp# nodemon index.js
+              [nodemon] 2.0.7
+              [nodemon] to restart at any time, enter `rs`
+              [nodemon] watching path(s): *.*
+              [nodemon] watching extensions: js,mjs,json
+              [nodemon] starting `node index.js`
+              Server Running at http://localhost:3000/
+              string
+              (node:1452) UnhandledPromiseRejectionWarning: Error: SQLITE_ERROR: near ",": syntax error
+              (node:1452) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+              (node:1452) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+              
+              
+              
+7. Accessing Unknown Database
+      When we are trying to access an unknown Database it will not show any error instead it creates a new database with the given name   
+      
+      
+      Error:
+          root@123:/.../myapp# sqlite3 goodread.db
+          SQLite version 3.16.2 2017-01-06 16:32:41
+          Enter ".help" for usage hints.
+          sqlite>.tables
+          sqlite>
+          
+8. Accessing Wrong Port Number
+    When we are trying to access the wrong port number, we may get the below notification
+    
+    
+    Error:
+      The connection was rejected. Either the requested service isn’t running on the requested server/port, the proxy settings in vscode are misconfigured, or a firewall is blocking requests. Details: RequestError: connect ECONNREFUSED 127.0.0.1:4000.
+
+          
+
